@@ -1,13 +1,14 @@
 import { FETCH_POKES_REQUEST, FETCH_POKES_ERROR, FETCH_POKES_SUCCESS } from 'actions/types'
+import StorageService from '../services/storage';
 
 const requestPokes = (isFetching = true) => ({
     type: FETCH_POKES_REQUEST,
     isFetching
 });
 
-const receivePokes = (pokes) => ({
+const receivePokes = (pokesContext) => ({
     type: FETCH_POKES_SUCCESS,
-    pokes
+    pokesContext
 });
 
 const invalidateFetchPokes = (hasFailed = false) => ({
@@ -17,8 +18,15 @@ const invalidateFetchPokes = (hasFailed = false) => ({
 
 export const fetchPokes = () => {
     return async (dispatch) => {
-        dispatch(requestPokes());
+        try {
+            dispatch(requestPokes());
 
-        //API CALL and resolve data
+                    //API CALL and resolve data
+            const pokesContext = await StorageService.getInstance().fetchPokes();
+            dispatch(receivePokes(pokesContext))
+        } catch (e) {
+            dispatch(invalidateFetchPokes())
+        }
+
     }
 }

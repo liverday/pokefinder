@@ -1,10 +1,13 @@
 import React from 'react';
-import { HeaderContainer, TitleImage } from './styles';
+import { HeaderContainer, TitleImage, TitleSubText, TitleContainer } from './styles';
 import titleImg from './title.png';
 
 const Header = () => (
     <HeaderContainer>
-        <TitleImage src={titleImg}></TitleImage>
+        <TitleContainer>
+            <TitleImage src={titleImg}></TitleImage>
+            <TitleSubText>Find your favorite PokéMon info!</TitleSubText>
+        </TitleContainer>
     </HeaderContainer>
 )
 

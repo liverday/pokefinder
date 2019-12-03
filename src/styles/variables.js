@@ -7,5 +7,22 @@ export const Spacing = {
 }
 
 export const Colors = {
-    headerBackground: '#960018'
+    headerBackground: '#960018',
+    color: '#DDD',
+    colorDark: '#222',
+    colorDarkRGB: '34, 34, 34'
+}
+
+export const FontColors = {
+    primary: Colors.color,
+    primaryDark: Colors.colorDark,
+}
+
+export const FontSize = {
+    h1: '2em',
+    h2: '1.5em',
+    h3: '1.17em',
+    h4: '1em',
+    h5: '.85em',
+    h6: '.67em'
 }

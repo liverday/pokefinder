@@ -2,7 +2,12 @@ import { FETCH_POKES_REQUEST, FETCH_POKES_ERROR, FETCH_POKES_SUCCESS } from 'act
 
 const initialState = {
     isFetching: false,
-    pokes: [],
+    pokesContext: {
+        next: null,
+        previous: null,
+        count: 0,
+        pokes: []
+    },
     hasFailed: false
 }
 
@@ -23,7 +28,7 @@ export default (state = initialState, action) => {
         case FETCH_POKES_SUCCESS:
             return {
                 ...state,
-                pokes: [...action.pokes],
+                pokesContext: { ...action.pokesContext },
                 isFetching: false,
                 hasFailed: false
             }

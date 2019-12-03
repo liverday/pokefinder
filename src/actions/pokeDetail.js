@@ -1,4 +1,5 @@
 import { FETCH_POKE_BY_ID_REQUEST ,FETCH_POKE_BY_ID_SUCCESS, FETCH_POKE_BY_ID_ERROR } from 'actions/types';
+import StorageService from '../services/storage';
 
 const requestPokeById = (id) => ({
     type: FETCH_POKE_BY_ID_REQUEST,
@@ -20,7 +21,5 @@ const invalidatePokeById = (id) => ({
 export const fetchPokeById = (id) => {
     return (dispatch) => {
         dispatch(requestPokeById(id));
-
-        //API CALLS
     }
 }

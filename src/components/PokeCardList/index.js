@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchPokes } from 'actions';
 import { ListContainer } from './styles';
+import Loading from 'components/Loading';
+import PokeCard from '../PokeCard';
 
 const PokeCardList = ({ pokes, isFetching, fetchPokes }) => {
     useEffect(() => {
@@ -10,17 +12,18 @@ const PokeCardList = ({ pokes, isFetching, fetchPokes }) => {
 
     return (
         <ListContainer>
-            {pokes && isFetching ? (
-                pokes.map((poke, i) => <div key={i}></div>)
+            {pokes && pokes.length && !isFetching ? (
+                pokes.map((poke, i) => <PokeCard poke={poke} key={i} />)
             ) : (
-                'Loading...'
+                <Loading />
             )}
         </ListContainer>
     )
 }
 
 const mapStateToProps = ({ pokeReducer }) => {
-    const { pokes, isFetching } = pokeReducer;
+    const { pokesContext, isFetching } = pokeReducer;
+    const { pokes } = pokesContext
 
     return {
         pokes,

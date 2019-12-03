@@ -5,5 +5,8 @@ import { Spacing } from 'styles/variables';
 export const ListContainer = styled.div`
     display: flex;
     flex-flow: row wrap;
-    padding: ${Spacing.lg};
+    padding: ${Spacing.xl};
+    justify-content: center;
+    flex: 1;
+    overflow: auto;
 `;
