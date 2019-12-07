@@ -4,35 +4,43 @@ import { fetchPokes } from 'actions';
 import { ListContainer } from './styles';
 import Loading from 'components/Loading';
 import PokeCard from '../PokeCard';
+import InfiniteScroll from 'react-infinite-scroller';
 
-const PokeCardList = ({ pokes, isFetching, fetchPokes }) => {
+const PokeCardList = ({ pokes, fetchPokes, hasMore }) => {
+    const fetchMore = (page) => {
+        fetchPokes(page, 40)
+    }
+
     useEffect(() => {
-        fetchPokes();
-    }, [fetchPokes]);
+        fetchMore(0);
+    }, [])
 
     return (
-        <ListContainer>
-            {pokes && pokes.length && !isFetching ? (
-                pokes.map((poke, i) => <PokeCard poke={poke} key={i} />)
-            ) : (
-                <Loading />
-            )}
-        </ListContainer>
+        <InfiniteScroll
+            pageStart={0}
+            loadMore={fetchMore}
+            hasMore={hasMore}
+            loader={<Loading key={0}/>}
+        >
+            <ListContainer>
+                {pokes.map((poke, i) => <PokeCard poke={poke} key={i} />)}
+            </ListContainer>
+        </InfiniteScroll>
     )
 }
 
 const mapStateToProps = ({ pokeReducer }) => {
-    const { pokesContext, isFetching } = pokeReducer;
-    const { pokes } = pokesContext
+    const { pokesContext } = pokeReducer;
+    const { pokes, next } = pokesContext;
 
     return {
         pokes,
-        isFetching
+        hasMore: !!next
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchPokes: () => dispatch(fetchPokes())
+    fetchPokes: (page, pageSize) => dispatch(fetchPokes(page, pageSize))
 })
 
 

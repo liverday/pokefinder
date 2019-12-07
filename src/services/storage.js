@@ -2,7 +2,7 @@ import { call, HttpVerbs } from './http';
 
 export default class StorageService {
     static _instance = null;
-    _pokesContext;
+    _pokesContext = { };
 
     static getInstance() {
         if (this._instance == null)
@@ -11,21 +11,27 @@ export default class StorageService {
         return this._instance;
     }
 
-    async fetchPokes() {
-        if (!this._pokesContext)
-            await this.loadPokesContext()
+    async fetchPokes(page, pageSize = 40) {
+        const [limit, offset] = [pageSize, page * pageSize];
         
-        return this._pokesContext;
+        let key = `${page}-${pageSize}`;
+        if (!this._pokesContext[key])
+            await this.loadPokesContext(key, limit, offset)
+        
+        return this._pokesContext[key];
     }
 
-    async loadPokesContext() {
+    async loadPokesContext(key, limit, offset) {
         try {
             let localPokesContext = await JSON.parse(localStorage.getItem('pokesContext'));
             
-            if (!localPokesContext) {
-                const { data } = await call(HttpVerbs.get, 'pokemon', { });
+            if (!localPokesContext) 
+                localPokesContext = { }
+
+            if (!localPokesContext[key]) {
+                const { data } = await call(HttpVerbs.get, `pokemon?limit=${limit}&offset=${offset}`, { });
                 if (data) {
-                    localPokesContext = {
+                    localPokesContext[key] = {
                         count: data.count,
                         next: data.next,
                         previous: data.previous,
@@ -35,7 +41,7 @@ export default class StorageService {
                 }
             }
 
-            this._pokesContext = localPokesContext;
+            this._pokesContext[key] = localPokesContext[key];
         } catch (e) {
             console.error('Error fetching pokes: ', e);
         }

@@ -28,7 +28,10 @@ export default (state = initialState, action) => {
         case FETCH_POKES_SUCCESS:
             return {
                 ...state,
-                pokesContext: { ...action.pokesContext },
+                pokesContext: { 
+                    ...action.pokesContext,
+                    pokes: [...state.pokesContext.pokes, ...action.pokesContext.pokes],
+                },
                 isFetching: false,
                 hasFailed: false
             }

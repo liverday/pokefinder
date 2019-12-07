@@ -16,13 +16,13 @@ const invalidateFetchPokes = (hasFailed = false) => ({
     hasFailed
 });
 
-export const fetchPokes = () => {
+export const fetchPokes = (page, pageSize) => {
     return async (dispatch) => {
         try {
             dispatch(requestPokes());
 
-                    //API CALL and resolve data
-            const pokesContext = await StorageService.getInstance().fetchPokes();
+            //API CALL and resolve data
+            const pokesContext = await StorageService.getInstance().fetchPokes(page, pageSize);
             dispatch(receivePokes(pokesContext))
         } catch (e) {
             dispatch(invalidateFetchPokes())

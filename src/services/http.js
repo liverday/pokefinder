@@ -4,10 +4,12 @@ const axiosInstance = axios.create({
     baseURL: 'https://pokeapi.co/api/v2'  
 });
 
-const get = (endPoint, params, headers = {}) => axiosInstance.get(endPoint, {
-    params,
-    headers
-})
+const get = (endPoint, params, headers = {}) => {
+    return axiosInstance.get(endPoint, {
+        params,
+        headers
+    })
+}
 
 
 const post = (endPoint, params) => {
