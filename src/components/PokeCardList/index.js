@@ -12,8 +12,12 @@ const PokeCardList = ({ pokes, fetchPokes, hasMore }) => {
     }
 
     useEffect(() => {
-        fetchMore(0);
-    }, [])
+        const fetchOnInit = () => {
+            fetchPokes(0, 40)
+        } 
+
+        fetchOnInit();
+    }, [fetchPokes])
 
     return (
         <InfiniteScroll

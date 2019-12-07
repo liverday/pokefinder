@@ -46,4 +46,21 @@ export default class StorageService {
             console.error('Error fetching pokes: ', e);
         }
     }
+
+    async fetchPokeByID(pokeID) {
+        return this.loadPokeByID(pokeID)
+    }
+
+    async loadPokeByID(pokeID) {
+        try {
+            const { data } = await call(HttpVerbs.get, `pokemon/${pokeID}`, { });
+            
+            if (data) 
+                return data;
+
+            else throw('Pokémon não encontrado')
+        } catch (e) {
+            console.error(e);
+        }
+    }
 }

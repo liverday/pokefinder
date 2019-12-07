@@ -1,4 +1,4 @@
-import { FETCH_POKE_BY_ID_REQUEST ,FETCH_POKE_BY_ID_SUCCESS, FETCH_POKE_BY_ID_ERROR } from 'actions/types';
+import { FETCH_POKE_BY_ID_REQUEST, FETCH_POKE_BY_ID_SUCCESS, FETCH_POKE_BY_ID_ERROR } from 'actions/types';
 import StorageService from '../services/storage';
 
 const requestPokeById = (id) => ({
@@ -18,8 +18,18 @@ const invalidatePokeById = (id) => ({
     id
 })
 
-export const fetchPokeById = (id) => {
-    return (dispatch) => {
-        dispatch(requestPokeById(id));
+export const fetchPokeByID = (id) => {
+    return async (dispatch) => {
+        try {
+            dispatch(requestPokeById(id));
+
+            const data = await StorageService.getInstance().fetchPokeByID(id);
+            
+            setTimeout(() => {
+                dispatch(receivePokeById(id, data))
+            }, 300);
+        } catch (e) {
+            dispatch(invalidatePokeById(id))
+        }
     }
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Colors, Spacing, FontSize } from 'styles/variables';
+import { Colors, Spacing } from 'styles/variables';
 import { Title } from 'styles/typo';
 
 export const HeaderContainer = styled.div`
@@ -7,7 +7,7 @@ export const HeaderContainer = styled.div`
     padding: ${Spacing.sm};
     justify-content: center;
     align-items: center;
-    background-color: ${Colors.headerBackground};
+    background-color: ${Colors.baseRed};
     width: 100%;
 `;
 

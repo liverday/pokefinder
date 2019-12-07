@@ -7,7 +7,8 @@ export const Spacing = {
 }
 
 export const Colors = {
-    headerBackground: '#960018',
+    baseRed: '#960018',
+    redLighten: '#DE0023',
     color: '#DDD',
     colorDark: '#222',
     colorDarkRGB: '34, 34, 34'

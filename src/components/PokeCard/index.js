@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom';
+
 import { CardContainer, Header, HeaderTitle, Body, Sprite, PokeTitle } from './styles';
 import Loading from '../Loading';
 
 const PokeCard = ({ poke }) => {
+    const history = useHistory();
+
     const { url, name } = poke;
     const pokeID = url.split('/')[url.split('/').length - 2];
 
@@ -12,9 +16,10 @@ const PokeCard = ({ poke }) => {
         setSpriteURL(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeID}.png`)
     }, [pokeID])
 
+    const navigateToDetail = () => history.push(pokeID)
     
     return (
-        <CardContainer>
+        <CardContainer onClick={navigateToDetail}>
             <Header>
                 <HeaderTitle>{pokeID}.</HeaderTitle>
             </Header>

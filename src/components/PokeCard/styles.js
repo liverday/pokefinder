@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Colors, FontColors, Spacing, FontSize } from 'styles/variables';
-import { Title, Text } from 'styles/typo';
+import { Title, Capitalize } from 'styles/typo';
 
 export const CardContainer = styled.div`
     display: flex;
@@ -13,7 +13,9 @@ export const CardContainer = styled.div`
 
     &:hover {
         box-shadow: 2px 2px 7px ${Colors.colorDark};
-    }
+    };
+
+    cursor: pointer;
 `
 
 export const Header = styled.div`
@@ -46,8 +48,7 @@ export const Sprite = styled.img`
 `;
 
 
-export const PokeTitle = styled(Text)`
+export const PokeTitle = styled(Capitalize)`
     font-size: ${FontSize.h3};
-    text-transform: capitalize;
     margin-bottom: ${Spacing.xs};
 `
