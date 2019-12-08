@@ -15,7 +15,7 @@ const AbilityList = ({ abilities }) => {
                         {is_hidden ? 'Hidden Ability' : 'Common Ability'}
                     </Label>
                     <Ability>
-                        {ability.name}
+                        {ability.name.split('-').join(' ')}
                     </Ability>
                 </AbilityContainer>
             ))}

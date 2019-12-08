@@ -15,7 +15,7 @@ const SpriteSelector = ({ sprites }) => {
     useEffect(() => {
         const transformSpritesToArray = () => {
             const keys = Object.keys(sprites);
-            setSpritesArray(keys.map(key => ({
+            setSpritesArray(keys.filter(key => !!sprites[key]).map(key => ({
                 url: sprites[key],
                 gender: key.includes('_female') ? 'F' : 'M'
             })));
@@ -26,7 +26,7 @@ const SpriteSelector = ({ sprites }) => {
 
     useEffect(() => {
         if (spritesArray.length) {
-            let index = 4;
+            let index = spritesArray.length / 2;
             let { url, gender } = spritesArray[index]
             setSelectedSprite({
                 index,
