@@ -4,6 +4,10 @@ import { FontColors, FontSize } from 'styles/variables';
 export const Text = styled.span`
 `;
 
+export const Bold = styled(Text)`
+    font-weight: 900;
+`
+
 export const Title = styled(Text)`
     font-family: 'Bangers', cursive;
     color: #FFF;

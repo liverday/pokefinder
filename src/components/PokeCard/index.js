@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 
-import { CardContainer, Header, HeaderTitle, Body, Sprite, PokeTitle } from './styles';
+import { CardContainer, Header, HeaderTitle, Body, PokeTitle } from './styles';
+import { Sprite } from 'styles/sprite';
+
 import Loading from '../Loading';
 
 const PokeCard = ({ poke }) => {

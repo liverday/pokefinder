@@ -58,7 +58,7 @@ export default class StorageService {
             if (data) 
                 return data;
 
-            else throw('Pokémon não encontrado')
+            else throw(data);
         } catch (e) {
             console.error(e);
         }

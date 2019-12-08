@@ -1,21 +1,24 @@
 import React, { useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchPokeByID } from 'actions';
 import typeColors from './type_colors'; 
 
 import { Capitalize } from 'styles/typo';
-import { Container, ContainerContent, Header, Body, HeaderTitle, TypeList, Type } from './styles';
+import { Container, ContainerContent, Header, Body, HeaderTitle, TypeList, Type, Row } from './styles';
 
-import Loading from '../Loading';
+import Loading from 'components/Loading';
+import SpriteSelector from './SpriteSelector';
+import StatusList from './StatusList';
+import AbilitiyList from './AbilityList';
 
 const PokeDetail = ({ fetchPokeByID, isFetching, pokeData }) => {
     const { pokeID } = useParams();
-    const history = useHistory();
 
     useEffect(() => {
         fetchPokeByID(pokeID)
     }, [pokeID, fetchPokeByID]);
+
     return (
         <Container>
             <ContainerContent>
@@ -39,9 +42,12 @@ const PokeDetail = ({ fetchPokeByID, isFetching, pokeData }) => {
                 <Body>
                     {isFetching ? (
                         <Loading />
-                    ): (
-                        <>
-                        </>
+                    ) : (
+                        <Row height="250">
+                            {pokeData && pokeData.sprites &&  <SpriteSelector sprites={pokeData.sprites} />}
+                            {pokeData && pokeData.stats && <StatusList stats={pokeData.stats} />}
+                            {pokeData && pokeData.abilities && <AbilitiyList abilities={pokeData.abilities} />}
+                        </Row>
                     )}
                 </Body>
             </ContainerContent>

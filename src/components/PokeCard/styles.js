@@ -41,13 +41,6 @@ export const Body = styled.div`
     text-shadow: none;
 `
 
-export const Sprite = styled.img`
-    width: 5em;
-    height: 5em;
-    display: none;
-`;
-
-
 export const PokeTitle = styled(Capitalize)`
     font-size: ${FontSize.h3};
     margin-bottom: ${Spacing.xs};

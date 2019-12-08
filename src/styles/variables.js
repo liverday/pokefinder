@@ -11,7 +11,10 @@ export const Colors = {
     redLighten: '#DE0023',
     color: '#DDD',
     colorDark: '#222',
-    colorDarkRGB: '34, 34, 34'
+    colorDarkRGB: '34, 34, 34',
+    baseBlue: '#0041AB',
+    basePink: '#D606BA',
+    baseBlueLight: '#0061FF'
 }
 
 export const FontColors = {

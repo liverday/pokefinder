@@ -66,3 +66,9 @@ export const Type = styled.span`
     font-size: ${FontSize.h6}
     font-family: 'Press Start 2P', cursive;
 `
+
+export const Row = styled.div`
+    display: flex;
+    height: ${({ height }) => `${height}px` || '100%'};
+    width: 100%;
+`
