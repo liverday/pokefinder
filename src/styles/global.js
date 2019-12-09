@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import 'react-tabs/style/react-tabs.css';
 
 const GlobalStyle = createGlobalStyle`
     * {
