@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
                 isFetching: action.isFetching,
                 pokeData: { }
             }
-        case FETCH_POKE_BY_ID_SUCCESS:
+        case FETCH_POKE_BY_ID_SUCCESS:    
             return {
                 ...state,
                 id: action.id,

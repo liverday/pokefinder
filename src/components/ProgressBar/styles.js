@@ -5,8 +5,9 @@ export const BarContainer = styled.div`
     position: relative;
     width: 100%;
     border-radius: 5px;
-    background-color: ${Colors.color};
+    background-color: ${({ percentage }) => !!percentage ? Colors.basePink : Colors.color};
     height: 25px;
+    font-size: ${({ fontSize }) => fontSize ? `${fontSize}px` : 'inherit'};
 `
 
 export const FillerContainer = styled(BarContainer)`
@@ -18,7 +19,7 @@ export const FillerContainer = styled(BarContainer)`
     border-radius: inherit;
     color: white;
     padding: 3px;
-
+    font-size: inherit;
     &:hover {
         background: ${Colors.baseBlue};
     }

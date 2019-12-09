@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 import { BarContainer, FillerContainer } from './styles';
 
-const ProgressBar = ({ percentage }) => {
+const ProgressBar = ({ percentage, percentageFather }) => {
     const [showProgress, setShowProgress] = useState(false);
 
     let subject = new Subject();
@@ -28,7 +28,7 @@ const ProgressBar = ({ percentage }) => {
     }, [subject]);
 
     return (
-        <BarContainer>
+        <BarContainer percentage={!showProgress ? null : percentageFather}>
             <FillerContainer percentage={!showProgress ? '0' : percentage}>
                 {showProgress && `${percentage}%` }
             </FillerContainer>

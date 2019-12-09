@@ -1,23 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchPokeByID } from 'actions';
 import typeColors from './type_colors'; 
 
 import { Capitalize } from 'styles/typo';
-import { Container, ContainerContent, Header, Body, HeaderTitle, TypeList, Type, Row } from './styles';
+import { Container, ContainerContent, Header, Body, HeaderTitle, TypeList, Type, Row, RowCentered, FlavorText } from './styles';
 
 import Loading from 'components/Loading';
 import SpriteSelector from './SpriteSelector';
 import StatusList from './StatusList';
 import AbilitiyList from './AbilityList';
+import SpecieDetail from './SpecieDetail';
 
 const PokeDetail = ({ fetchPokeByID, isFetching, pokeData }) => {
     const { pokeID } = useParams();
+    const [flavorText, setFlavorText] = useState(null);
 
     useEffect(() => {
         fetchPokeByID(pokeID)
     }, [pokeID, fetchPokeByID]);
+    
+    useEffect(() => {
+        if (pokeData && pokeData.species && pokeData.species.flavor_text_entries) {
+            const { flavor_text_entries } = pokeData.species;
+
+            const enFlavour = flavor_text_entries.find(flavor => flavor.language.name === 'en');
+
+            if (enFlavour)
+                setFlavorText(enFlavour.flavor_text);
+        }
+    }, [pokeData, setFlavorText]);
 
     return (
         <Container>
@@ -43,11 +56,19 @@ const PokeDetail = ({ fetchPokeByID, isFetching, pokeData }) => {
                     {isFetching ? (
                         <Loading />
                     ) : (
-                        <Row height="250">
-                            {pokeData && pokeData.sprites &&  <SpriteSelector sprites={pokeData.sprites} />}
-                            {pokeData && pokeData.stats && <StatusList stats={pokeData.stats} />}
-                            {pokeData && pokeData.abilities && <AbilitiyList abilities={pokeData.abilities} />}
-                        </Row>
+                        <>
+                            <Row>
+                                {pokeData && pokeData.sprites &&  <SpriteSelector sprites={pokeData.sprites} />}
+                                {pokeData && pokeData.stats && <StatusList stats={pokeData.stats} />}
+                                {pokeData && pokeData.abilities && <AbilitiyList abilities={pokeData.abilities} />}
+                            </Row>
+                            {flavorText && <RowCentered height="100">
+                                <FlavorText>{flavorText}</FlavorText>
+                            </RowCentered>}
+                            <Row>
+                                {pokeData && pokeData.species && <SpecieDetail pokeData={pokeData} />}
+                            </Row>
+                        </>
                     )}
                 </Body>
             </ContainerContent>
@@ -55,8 +76,8 @@ const PokeDetail = ({ fetchPokeByID, isFetching, pokeData }) => {
     )
 }
 
-const mapStateToProps = ({ pokeDetailReducer }) => {
-    const { isFetching, pokeData } = pokeDetailReducer
+const mapStateToProps = ({ pokeDataReducer }) => {
+    const { isFetching, pokeData } = pokeDataReducer
     
     return {
         isFetching, 

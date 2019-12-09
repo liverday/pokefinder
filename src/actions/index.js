@@ -1,7 +1,7 @@
 import { fetchPokes } from './pokes';
-import { fetchPokeByID } from './pokeDetail';
+import { fetchPokeByID } from './pokeData';
 
 export { 
     fetchPokes,
-    fetchPokeByID
+    fetchPokeByID,
 }

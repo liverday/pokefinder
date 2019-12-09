@@ -14,15 +14,14 @@ import PokeDetail from 'components/PokeDetail';
 
 const App = () => {
     const [showTopButton, setShowTopButton] = useState(false);
-
-    let containerRef;
+    const [containerRef, setContainerRef] = useState(null);
 
     const handleScroll = useCallback(() => {
         if (!containerRef)
             return;
 
         let { y } = containerRef.getBoundingClientRect();
-
+        
         if (y <= -300)
             setShowTopButton(true);
         else
@@ -39,7 +38,7 @@ const App = () => {
 
     return (
         <Provider store={store}>
-            <AppContainer id="main" ref={ref => containerRef = ref}>
+            <AppContainer id="main" ref={ref => setContainerRef(ref)}>
                 <GlobalStyle />
                 <Header />
                 <Switch>

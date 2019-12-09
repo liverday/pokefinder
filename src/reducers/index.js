@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import pokeReducer from './pokeReducer';
-import pokeDetailReducer from './pokeDetailReducer';
+import pokeDataReducer from './pokeDataReducer';
 
 export default combineReducers({
     pokeReducer,
-    pokeDetailReducer
+    pokeDataReducer,
 })

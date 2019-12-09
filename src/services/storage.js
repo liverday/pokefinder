@@ -3,7 +3,7 @@ import { call, HttpVerbs } from './http';
 export default class StorageService {
     static _instance = null;
     _pokesContext = { };
-
+    
     static getInstance() {
         if (this._instance == null)
             this._instance = new StorageService();
@@ -53,8 +53,15 @@ export default class StorageService {
 
     async loadPokeByID(pokeID) {
         try {
-            const { data } = await call(HttpVerbs.get, `pokemon/${pokeID}`, { });
-            
+            const promises = Promise.all([
+                call(HttpVerbs.get, `pokemon/${pokeID}`, { }),
+                call(HttpVerbs.get, `pokemon-species/${pokeID}`)
+            ])
+            const [pokeDetail, species] = await promises;
+            const { data } = pokeDetail;
+
+            data.species = species.data;
+
             if (data) 
                 return data;
 

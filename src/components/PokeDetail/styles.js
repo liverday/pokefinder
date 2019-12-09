@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { Colors, Spacing, FontColors, FontSize } from 'styles/variables';
-import { Title } from 'styles/typo';
+import { Title, Text } from 'styles/typo';
 
 const BaseContainer = styled.div`
     display: flex;
@@ -69,6 +69,14 @@ export const Type = styled.span`
 
 export const Row = styled.div`
     display: flex;
-    height: ${({ height }) => `${height}px` || '100%'};
+    height: ${({ height }) => height ? `${height}px` : '100%'};
     width: 100%;
+`
+
+export const RowCentered = styled(Row)`
+    justify-content: center;
+`
+
+export const FlavorText = styled(Text)`
+    margin: ${Spacing.xl} 0 
 `
