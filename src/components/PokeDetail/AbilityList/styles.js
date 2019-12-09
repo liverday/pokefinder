@@ -20,7 +20,7 @@ export const Label = styled(Capitalize)`
 
 export const Ability = styled(Capitalize)`
     margin-top: ${Spacing.sm}
-    margin-bottom: ${Spacing.sm};
+    margin-bottom: ${Spacing.xs};
 `;
 
 export const AbilityContainer = styled.div`

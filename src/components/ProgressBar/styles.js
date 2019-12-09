@@ -14,6 +14,7 @@ export const FillerContainer = styled(BarContainer)`
     background: ${Colors.baseBlueLight};
     height: 100%;
     width: ${({ percentage }) => `${percentage}%` };
+    max-width: 100%;
     transition: width .88s ease-out, background .2s ease;
     text-align: center;
     border-radius: inherit;
