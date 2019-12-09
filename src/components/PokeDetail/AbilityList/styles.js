@@ -19,7 +19,7 @@ export const Label = styled(Capitalize)`
 `;
 
 export const Ability = styled(Capitalize)`
-    margin-top: ${Spacing.sm}
+    margin-top: ${Spacing.xs}
     margin-bottom: ${Spacing.xs};
 `;
 
