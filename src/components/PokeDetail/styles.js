@@ -78,5 +78,4 @@ export const RowCentered = styled(Row)`
 `
 
 export const FlavorText = styled(Text)`
-    margin: ${Spacing.xl} 0 
 `
