@@ -11,6 +11,7 @@ A react application that consumes [PokéAPI](https://pokeapi.co/) to list pokemo
 - Redux Thunk
 - Styled-Components
 - React Infinite Scroll
+- React Scroll
 - RxJS
 
 ## Running the project
